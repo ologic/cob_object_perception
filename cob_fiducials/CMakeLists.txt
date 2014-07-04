@@ -1,5 +1,19 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+# Catkin User Guide: http://www.ros.org/doc/groovy/api/catkin/html/user_guide/user_guide.html
+# Catkin CMake Standard: http://www.ros.org/doc/groovy/api/catkin/html/user_guide/standards.html
+cmake_minimum_required(VERSION 2.8.3)
+project(cob_fiducials)
+# Load catkin and all dependencies required for this package
+# TODO: remove all from COMPONENTS that are not catkin packages.
+find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs tf image_transport cv_bridge visualization_msgs cob_vision_utils cob_object_detection_msgs cmake_modules)
+find_package( OpenCV REQUIRED )
+find_package(Boost REQUIRED COMPONENTS system thread)
+find_package( TinyXML REQUIRED )
+# include_directories(include ${Boost_INCLUDE_DIR} ${catkin_INCLUDE_DIRS})
+# CATKIN_MIGRATION: removed during catkin migration
+# cmake_minimum_required(VERSION 2.4.6)
+
+# CATKIN_MIGRATION: removed during catkin migration
+# include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 
 # Set the build type.  Options are:
 #  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
@@ -9,7 +23,9 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 #set(ROS_BUILD_TYPE RelWithDebInfo)
 
-rosbuild_init()
+
+# CATKIN_MIGRATION: removed during catkin migration
+# rosbuild_init()
 
 #set the default path for built executables to the "bin" directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/ros/bin)
@@ -17,32 +33,74 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/ros/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/common/lib)
 
 #uncomment if you have defined messages
-#rosbuild_genmsg()
+#add_message_files(
+#  FILES
+  # TODO: List your msg files here
+#)
 #uncomment if you have defined services
-rosbuild_gensrv()
+#add_service_files(
+ # FILES
+  # TODO: List your msg files here
+#)
 
 #common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
+#add_library(${PROJECT_NAME} src/example.cpp)
 #target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_executable(example examples/example.cpp)
+#add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-rosbuild_add_library(cob_fiducials common/src/FiducialModelPi.cpp
-)
+add_library(cob_vision_utils common/src/FiducialModelPi.cpp)
 
 # add include search paths
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/common/include)
 
-rosbuild_add_executable(fiducials ros/src/fiducials.cpp)
+add_executable(fiducials ros/src/fiducials.cpp)
 
 # add compile flag
-rosbuild_add_compile_flags(cob_fiducials -D__LINUX__ -DBOOST_FILESYSTEM_VERSION=2)
-rosbuild_add_compile_flags(fiducials -D__LINUX__ -DBOOST_FILESYSTEM_VERSION=2)
+
+# CATKIN_MIGRATION
+# use link_directories() include_directories(), add_definitions(), target_link_libraries() or set_target_properties
+# rosbuild_add_compile_flags(cob_fiducials -D__LINUX__ -DBOOST_FILESYSTEM_VERSION=2)
+
+# CATKIN_MIGRATION
+# use link_directories() include_directories(), add_definitions(), target_link_libraries() or set_target_properties
+# rosbuild_add_compile_flags(fiducials -D__LINUX__ -DBOOST_FILESYSTEM_VERSION=2)
 
 # initialize boost directory search
-rosbuild_add_boost_directories()
 
-target_link_libraries(cob_fiducials tinyxml)
-rosbuild_link_boost(${PROJECT_NAME} filesystem)
+# CATKIN_MIGRATION: removed during catkin migration
+# rosbuild_add_boost_directories()
+
+find_package(Boost REQUIRED COMPONENTS filesystem)
+include_directories(
+	${catkin_INCLUDE_DIRS}
+	${Boost_INCLUDE_DIRS} 
+	${OpenCV_INCLUDE_DIRS}
+  	${TinyXML_INCLUDE_DIRS}
+)
+
+target_link_libraries(
+	${cob_vision_utils_LIBRARIES}
+	${catkin_LIBRARIES}
+  	${roscpp_LIBRARIES} 
+	${Boost_LIBRARIES}
+	${OpenCV_LIBS}
+ 	${TinyXML_LIBRARIES}
+)
 
 target_link_libraries(fiducials cob_fiducials)
+## Generate added messages and services with any dependencies listed here
+#generate_messages(
+    #TODO DEPENDENCIES geometry_msgs std_msgs
+#)
+
+# catkin_package parameters: http://ros.org/doc/groovy/api/catkin/html/dev_guide/generated_cmake_api.html#catkin-package
+# TODO: fill in what other packages will need to use this package
+catkin_package(
+    DEPENDS roscpp sensor_msgs tf image_transport cv_bridge visualization_msgs cob_object_detection_msgs TinyXML
+    CATKIN_DEPENDS opencv2 cob_vision_utils
+    INCLUDE_DIRS # TODO include
+    LIBRARIES # TODO
+)
+
+set_target_properties(cob_fiducials PROPERTIES COMPILE_FLAGS "-D__LINUX__ -D__COB_ROS__")

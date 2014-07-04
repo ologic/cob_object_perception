@@ -1,0 +1,27 @@
+<package>
+  <name>cob_leptonica</name>
+  <version>0.0.1</version>
+  <description>ROS wrapper for leptonica (http://www.leptonica.org/). Follows the procedure applied in package leptonica.</description>
+  <maintainer email="todo.todo@todo.org">Richard Bormann</maintainer>
+
+  <license>LGPL</license>
+
+  <url type="website">http://ros.org/wiki/cob_leptonica</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Richard Bormann</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+
+  <!-- Dependencies needed after this package is compiled. -->
+
+  <!-- Dependencies needed only for running tests. -->
+
+<export>
+    <cpp lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -llept" cflags="-I${prefix}/include"/>
+</export>
+
+</package>

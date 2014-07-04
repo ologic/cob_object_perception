@@ -1,0 +1,29 @@
+<package>
+  <name>libdmtx_python</name>
+  <version>0.0.1</version>
+  <description>libdmtx
+
+	originally from James Bowman</description>
+  <maintainer email="todo.todo@todo.org">Joshua Hampp</maintainer>
+
+  <license>LGPL</license>
+
+  <url type="website">http://ros.org/wiki/libdmtx</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Joshua Hampp</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+
+  <!-- Dependencies needed after this package is compiled. -->
+
+  <!-- Dependencies needed only for running tests. -->
+
+<export>
+    <cpp lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -ldmtx" cflags="-I${prefix}/include"/>
+</export>
+
+</package>

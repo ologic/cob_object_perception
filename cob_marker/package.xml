@@ -1,0 +1,62 @@
+<package>
+  <name>cob_marker</name>
+  <version>0.0.1</version>
+  <description>cob_marker allows to find 6DOF markers of different types, like datamatrix, Qr, natural landmarks, ...</description>
+  <maintainer email="todo.todo@todo.org">Joshua Hampp</maintainer>
+
+  <license>LGPL</license>
+
+  <url type="website">http://ros.org/wiki/cob_marker</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Joshua Hampp</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>pcl</build_depend>
+  <build_depend>pcl_ros</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>opencv2</build_depend>
+  <build_depend>message_filters</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>tf_conversions</build_depend>
+  <build_depend>cob_object_detection_msgs</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <build_depend>actionlib</build_depend>
+  <build_depend>libzxing</build_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>roscpp</run_depend>
+  <run_depend>pcl</run_depend>
+  <run_depend>pcl_ros</run_depend>
+  <run_depend>nodelet</run_depend>
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>opencv2</run_depend>
+  <run_depend>message_filters</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>tf_conversions</run_depend>
+  <run_depend>cob_object_detection_msgs</run_depend>
+  <run_depend>visualization_msgs</run_depend>
+  <run_depend>actionlib</run_depend>
+  <run_depend>libzxing</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+  <!-- <test_depend>roscpp</test_depend> -->
+  <!-- <test_depend>pcl</test_depend> -->
+  <!-- <test_depend>pcl_ros</test_depend> -->
+  <!-- <test_depend>nodelet</test_depend> -->
+  <!-- <test_depend>cv_bridge</test_depend> -->
+  <!-- <test_depend>opencv2</test_depend> -->
+  <!-- <test_depend>message_filters</test_depend> -->
+  <!-- <test_depend>tf</test_depend> -->
+  <!-- <test_depend>tf_conversions</test_depend> -->
+  <!-- <test_depend>cob_object_detection_msgs</test_depend> -->
+  <!-- <test_depend>visualization_msgs</test_depend> -->
+  <!-- <test_depend>actionlib</test_depend> -->
+  <!-- <test_depend>libzxing</test_depend> -->
+
+</package>

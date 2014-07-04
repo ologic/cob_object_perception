@@ -1,0 +1,48 @@
+<package>
+  <name>cob_object_categorization</name>
+  <version>0.0.1</version>
+  <description>cob_object_categorization</description>
+  <maintainer email="todo.todo@todo.org">Richard Bormann</maintainer>
+
+  <license>LGPL</license>
+  <license>Fraunhofer IPA</license>
+
+  <url type="website">http://ros.org/wiki/cob_object_categorization</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Richard Bormann</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>opencv2</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>pcl_ros</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>message_filters</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>cob_perception_msgs</build_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>roscpp</run_depend>
+  <run_depend>opencv2</run_depend>
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>pcl_ros</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>message_filters</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>cob_perception_msgs</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+  <!-- <test_depend>roscpp</test_depend> -->
+  <!-- <test_depend>opencv2</test_depend> -->
+  <!-- <test_depend>cv_bridge</test_depend> -->
+  <!-- <test_depend>pcl_ros</test_depend> -->
+  <!-- <test_depend>sensor_msgs</test_depend> -->
+  <!-- <test_depend>message_filters</test_depend> -->
+  <!-- <test_depend>image_transport</test_depend> -->
+  <!-- <test_depend>cob_perception_msgs</test_depend> -->
+
+</package>

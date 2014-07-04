@@ -1,0 +1,39 @@
+<package>
+  <name>cob_object_perception</name>
+  <version>0.0.1</version>
+  <description>cob_object_perception</description>
+  <maintainer email="todo.todo@todo.org">Maintained by Jan Fischer</maintainer>
+
+  <license>LGPL</license>
+
+  <url type="website">http://ros.org/wiki/cob_object_perception</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Maintained by Jan Fischer</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>cob_object_detection_fake</run_depend>
+  <run_depend>cob_object_categorization</run_depend>
+  <run_depend>cob_read_text</run_depend>
+  <run_depend>cob_marker</run_depend>
+  <run_depend>cob_leptonica</run_depend>
+  <run_depend>cob_fiducials</run_depend>
+  <run_depend>libzxing</run_depend>
+  <run_depend>libdmtx_python</run_depend>
+  <run_depend>cob_tesseract</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+
+
+
+
+
+
+
+</package>

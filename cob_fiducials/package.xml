@@ -1,0 +1,54 @@
+<package>
+  <name>cob_fiducials</name>
+  <version>0.0.1</version>
+  <description>Fiducial recognition. Implementation of different 2D tags like PI-tag from Bergamasco et al. for recognition with a single 2D camera.</description>
+  <maintainer email="todo.todo@todo.org">Jan Fischer</maintainer>
+
+  <license>LGPL</license>
+
+  <url type="website">http://ros.org/wiki/cob_fiducials</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Jan Fischer</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>opencv2</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <build_depend>cob_vision_utils</build_depend>
+  <build_depend>cob_object_detection_msgs</build_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>opencv2</run_depend>
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>visualization_msgs</run_depend>
+  <run_depend>cob_vision_utils</run_depend>
+  <run_depend>cob_object_detection_msgs</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+  <!-- <test_depend>roscpp</test_depend> -->
+  <!-- <test_depend>sensor_msgs</test_depend> -->
+  <!-- <test_depend>tf</test_depend> -->
+  <!-- <test_depend>image_transport</test_depend> -->
+  <!-- <test_depend>opencv2</test_depend> -->
+  <!-- <test_depend>cv_bridge</test_depend> -->
+  <!-- <test_depend>visualization_msgs</test_depend> -->
+  <!-- <test_depend>cob_vision_utils</test_depend> -->
+  <!-- <test_depend>cob_object_detection_msgs</test_depend> -->
+
+<export>
+    <cpp lflags="-Wl,-rpath,${prefix}/common/lib -L${prefix}/common/lib -lcob_fiducials" cflags="-I${prefix}/ros/include -I${prefix}/common/include"/>
+</export>
+
+</package>

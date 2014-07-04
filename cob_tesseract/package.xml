@@ -1,0 +1,30 @@
+<package>
+  <name>cob_tesseract</name>
+  <version>0.0.1</version>
+  <description>A ROS wrapper for tesseract (http://code.google.com/p/tesseract-ocr/) following the procedure from package tesseract in the ocr stack.</description>
+  <maintainer email="todo.todo@todo.org">Richard Bormann</maintainer>
+
+  <license>LGPL</license>
+
+  <url type="website">http://ros.org/wiki/cob_tesseract</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Richard Bormann</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+  <build_depend>cob_leptonica</build_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>cob_leptonica</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+  <!-- <test_depend>cob_leptonica</test_depend> -->
+
+<export>
+    <cpp lflags="-L${prefix}/lib" cflags="-I${prefix}/include"/>
+</export>
+
+</package>

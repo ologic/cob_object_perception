@@ -1,5 +1,17 @@
-cmake_minimum_required(VERSION 2.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+# Catkin User Guide: http://www.ros.org/doc/groovy/api/catkin/html/user_guide/user_guide.html
+# Catkin CMake Standard: http://www.ros.org/doc/groovy/api/catkin/html/user_guide/standards.html
+cmake_minimum_required(VERSION 2.8.3)
+project(cob_object_categorization)
+# Load catkin and all dependencies required for this package
+# TODO: remove all from COMPONENTS that are not catkin packages.
+find_package(catkin REQUIRED COMPONENTS roscpp opencv2 cv_bridge pcl_ros sensor_msgs message_filters image_transport cob_perception_msgs)
+
+# include_directories(include ${Boost_INCLUDE_DIR} ${catkin_INCLUDE_DIRS})
+# CATKIN_MIGRATION: removed during catkin migration
+# cmake_minimum_required(VERSION 2.6)
+
+# CATKIN_MIGRATION: removed during catkin migration
+# include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 
 # Set the build type.  Options are:
 #  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
@@ -9,7 +21,9 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 #set(ROS_BUILD_TYPE RelWithDebInfo)
 
-rosbuild_init()
+
+# CATKIN_MIGRATION: removed during catkin migration
+# rosbuild_init()
 
 #set the default path for built executables to the "bin" directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
@@ -17,9 +31,15 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 #uncomment if you have defined messages
-#rosbuild_genmsg()
+#add_message_files(
+  FILES
+  # TODO: List your msg files here
+)
 #uncomment if you have defined services
-#rosbuild_gensrv()
+#add_service_files(
+  FILES
+  # TODO: List your msg files here
+)
 
 # add include search paths
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/ros/include
@@ -37,12 +57,17 @@ link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
 # Check for sse support
-rosbuild_check_for_sse()
+
+# CATKIN_MIGRATION
+# Find other way to find SSE
+# rosbuild_check_for_sse()
 #set(SSE_FLAGS "-msse2 -mfpmath=sse")
 
-rosbuild_add_boost_directories()
 
-rosbuild_add_executable(object_categorization
+# CATKIN_MIGRATION: removed during catkin migration
+# rosbuild_add_boost_directories()
+
+add_executable(object_categorization
 				common/src/AbstractBlobDetector.cpp
 				common/src/BlobFeature.cpp
 				common/src/BlobList.cpp
@@ -60,13 +85,21 @@ rosbuild_add_executable(object_categorization
 				common/src/timer.cpp)
 				#common/src/pcl/gfpfh.cpp)
 				
-rosbuild_add_executable(object_segmentation ros/src/segmentation_node.cpp)
+add_executable(object_segmentation ros/src/segmentation_node.cpp)
 
-rosbuild_add_compile_flags(object_categorization -D__LINUX__)
-rosbuild_add_compile_flags(object_segmentation -D__LINUX__)
 
-rosbuild_link_boost(object_categorization filesystem system)
-rosbuild_link_boost(object_segmentation filesystem system)
+# CATKIN_MIGRATION
+# use link_directories() include_directories(), add_definitions(), target_link_libraries() or set_target_properties
+# rosbuild_add_compile_flags(object_categorization -D__LINUX__)
+
+# CATKIN_MIGRATION
+# use link_directories() include_directories(), add_definitions(), target_link_libraries() or set_target_properties
+# rosbuild_add_compile_flags(object_segmentation -D__LINUX__)
+
+find_package(Boost REQUIRED COMPONENTS system thread filesystem)
+include_directories(${Boost_INCLUDE_DIRS})
+target_link_libraries(object_categorization ${Boost_LIBRARIES})
+target_link_libraries(object_segmentation ${Boost_LIBRARIES})
 
 target_link_libraries(object_categorization ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES} ${PCL_FEATURES_LIBRARIES})
 target_link_libraries(object_segmentation ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES} ${PCL_FEATURES_LIBRARIES})
@@ -74,9 +107,24 @@ target_link_libraries(object_segmentation ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRA
 #target_link_libraries(object_segmentation pcl_features pcl_common pcl_kdtree pcl_search pcl_filters pcl_io)
 
 #common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
+#add_library(${PROJECT_NAME} src/example.cpp)
 #target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-#rosbuild_add_executable(example examples/example.cpp)
+#
+# CATKIN_MIGRATION: removed during catkin migration
+# rosbuild_add_boost_directories()
+#target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+#add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
+## Generate added messages and services with any dependencies listed here
+generate_messages(
+    #TODO DEPENDENCIES geometry_msgs std_msgs
+)
+
+# catkin_package parameters: http://ros.org/doc/groovy/api/catkin/html/dev_guide/generated_cmake_api.html#catkin-package
+# TODO: fill in what other packages will need to use this package
+catkin_package(
+    DEPENDS roscpp opencv2 cv_bridge pcl_ros sensor_msgs message_filters image_transport cob_perception_msgs
+    CATKIN_DEPENDS # TODO
+    INCLUDE_DIRS # TODO include
+    LIBRARIES # TODO
+)
